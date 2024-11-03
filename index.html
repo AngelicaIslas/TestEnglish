@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alarm Testing Program</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <div id="group-selection" class="card">
+            <h1>Alarm Testing Program</h1>
+            <label for="group-number">Enter Group Number (1, 2, or 3):</label>
+            <input type="text" id="group-number" placeholder="Group 1, 2, or 3">
+            
+            <label for="personal-code">Enter Personal Code:</label>
+            <input type="text" id="personal-code" placeholder="Your Code">
+            
+            <button id="start-learning">Start Learning Phase</button>
+            <!-- Exchange next line with text in Parenthesis(<button id="skip-learning" style="display:none;" >Skip to Test Phase</button>) -->
+            <button id="skip-learning" style="display:none;" >Skip to Test Phase</button>          
+ 
+
+        </div>
+
+        <div id="learning-phase" class="card" style="display:none;">
+            <h2>Learning Phase</h2>
+            <p>Listen to the alarms and get familiar with them. The test will follow after this phase.</p>
+            <p><span class="bold"> - Design: </span> <span id="design">Icons</span></p>
+            <p><span class="bold"> - Category: </span> <span id="category"></span></p>
+            <p><span class="bold"> - Priority: </span> <span id="priority"></span></p>
+            <button id="go-to-test" style="display:none;">Go to Test Phase</button>
+        </div>
+
+        <div id="test-phase" class="card" style="display:none;">
+            <h2>Test Phase</h2>
+            <p><strong>Group:</strong> <span id="group-display"></span></p>
+            <p><strong>Design Sequence:</strong> <span id="design-sequence"></span></p>
+            <p class="right-align"><strong>Step:</strong> <span id="step-number"></span></p>
+            <p class="right-align"><strong>Repetition:</strong> <span id="repetition-count"></span>/5</p>
+            <p><strong></strong> <span id="alarm1-info" ></span></p> <!--after strong> i errased Alarm 1:-->
+            <p><strong></strong> <span id="alarm2-info"></span></p> <!--after strong> i errased Alarm 2:-->
+
+            <div id="step-status" style="color: green;"></div>
+
+            <h3>Select the category and priority for each alarm</h3>
+
+            <!-- Alarm 1 Selection -->
+            <div class="alarm-selection">
+                <label for="alarm1-category">Alarm 1 Category:</label>
+                <select id="alarm1-category">
+                    <option value="">Select Alarm 1 Category</option>
+                    <option value="Cardiovascular">Cardiovascular</option>
+                    <option value="Ventilation">Ventilation</option>
+                    <option value="DrugAdministration">Drug Administration</option>
+                    <option value="I don't know">I don't know</option> <!-- New option -->
+                </select>
+
+                <label for="alarm1-priority">Alarm 1 Priority:</label>
+                <select id="alarm1-priority">
+                    <option value="">Select Alarm 1 Priority</option>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="I don't know">I don't know</option> <!-- New option -->
+                </select>
+            </div>
+
+            <!-- Graphic separator between the two alarms -->
+            <div class="separator"></div>
+
+            <!-- Alarm 2 Selection -->
+            <div class="alarm-selection">
+                <label for="alarm2-category">Alarm 2 Category:</label>
+                <select id="alarm2-category">
+                    <option value="">Select Alarm 2 Category</option>
+                    <option value="Cardiovascular">Cardiovascular</option>
+                    <option value="Ventilation">Ventilation</option>
+                    <option value="DrugAdministration">Drug Administration</option>
+                    <option value="I don't know">I don't know</option> <!-- New option -->
+                </select>
+
+                <label for="alarm2-priority">Alarm 2 Priority:</label>
+                <select id="alarm2-priority">
+                    <option value="">Select Alarm 2 Priority</option>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="I don't know">I don't know</option> <!-- New option -->
+                </select>
+            </div>
+
+            <!-- Buttons for Confirmation and Navigation -->
+            <div class="button-container">
+                <button id="confirm-selection" class="confirm-button" style="display:none;">Confirm Selection</button>
+                <button id="next-repetition" class="next-repetition-button" style="display:none;">Next Repetition</button>
+                <button id="next-step" style="display:none;">Next Step</button>
+                <button id="finish-test" style="display:none;" class="confirm-button">Finish Test</button>
+            </div>
+        </div>
+
+        <!-- NASA-TLX Questionnaire Section -->
+        <div id="nasa-tlx" class="card" style="display:none;">
+            <h2>NASA-TLX Questionnaire</h2>
+            <p>Please rate the following according to your experience with the last group of alarms:</p>
+
+            <div class="dimension">
+                <label><strong>Mental Demand</strong> - How mentally demanding was the task?</label>
+                <div class="range-container">
+                    <input type="range" id="mental-demand" min="0" max="20" step="1" value="0">
+                    <div class="range-labels">
+                        <span>0</span><span>5</span><span>10</span><span>15</span><span>20</span>
+                    </div>
+                </div>
+                <div class="scale-labels">
+                    <span>very low</span><span></span><span></span><span></span><span>very high</span>
+                </div>
+            </div>
+
+            <div class="dimension">
+                <label><strong>Physical Demand</strong> - How physically demanding was the task?</label>
+                <div class="range-container">
+                    <input type="range" id="physical-demand" min="0" max="20" step="1" value="0">
+                    <div class="range-labels">
+                        <span>0</span><span>5</span><span>10</span><span>15</span><span>20</span>
+                    </div>
+                </div>
+                <div class="scale-labels">
+                    <span>very low</span><span></span><span></span><span></span><span>very high</span>
+                </div>
+            </div>
+
+            <div class="dimension">
+                <label><strong>Temporal Demand</strong> - How hurried or rushed was the pace of the task?</label>
+                <div class="range-container">
+                    <input type="range" id="temporal-demand" min="0" max="20" step="1" value="0">
+                    <div class="range-labels">
+                        <span>0</span><span>5</span><span>10</span><span>15</span><span>20</span>
+                    </div>
+                </div>
+                <div class="scale-labels">
+                    <span>very low</span><span></span><span></span><span></span><span>very high</span>
+                </div>
+            </div>
+
+            <div class="dimension">
+                <label><strong>Performance</strong> - How successful were you in accomplishing what you were asked to do?</label>
+                <div class="range-container">
+                    <input type="range" id="performance" min="0" max="20" step="1" value="0">
+                    <div class="range-labels">
+                        <span>0</span><span>5</span><span>10</span><span>15</span><span>20</span>
+                    </div>
+                </div>
+                <div class="scale-labels">
+                    <span>perfect</span><span></span><span></span><span></span><span>failure</span>
+                </div>
+            </div>
+
+            <div class="dimension">
+                <label><strong>Effort</strong> - How hard did you have to work to accomplish your level of performance?</label>
+                <div class="range-container">
+                    <input type="range" id="effort" min="0" max="20" step="1" value="0">
+                    <div class="range-labels">
+                        <span>0</span><span>5</span><span>10</span><span>15</span><span>20</span>
+                    </div>
+                </div>
+                <div class="scale-labels">
+                    <span>very low</span><span></span><span></span><span></span><span>very high</span>
+                </div>
+            </div>
+
+            <div class="dimension">
+                <label><strong>Frustration</strong> - How insecure, discouraged, irritated, stressed and annoyed were you?</label>
+                <div class="range-container">
+                    <input type="range" id="frustration" min="0" max="20" step="1" value="0">
+                    <div class="range-labels">
+                        <span>0</span><span>5</span><span>10</span><span>15</span><span>20</span>
+                    </div>
+                </div>
+                <div class="scale-labels">
+                    <span>very low</span><span></span><span></span><span></span><span>very high</span>
+                </div>
+            </div>
+
+            <button id="save-nasa-tlx" class="green-button">Save NASA-TLX</button>
+        </div>
+
+        <div id="log-section" class="card" style="display:none;">
+            <h2>Test Complete</h2>
+            <h3>Log of Test Results:</h3>
+            <pre id="test-log"></pre>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
