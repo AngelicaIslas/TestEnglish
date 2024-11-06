@@ -250,8 +250,8 @@ function getNonRepeatingAlarmPair(design) {
         alarm2Category = categories[Math.floor(Math.random() * categories.length)];
     } while (alarm2Category === alarm1Category);  
 
-        //const alarm2Priority = alarm1Priority === "High" ? "Medium" : "High";
-    let alarm2Priority = priorities[Math.floor(Math.random() * priorities.length)];
+    const alarm2Priority = alarm1Priority === "High" ? "Medium" : "High"; //differnt  prio than the first one
+    //let alarm2Priority = priorities[Math.floor(Math.random() * priorities.length)]; //any prio 
 
     return [
         { category: alarm1Category, priority: alarm1Priority, src: getAudioFromDesign(alarm1Category, alarm1Priority, design) },
