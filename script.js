@@ -195,7 +195,7 @@ function playTestPair() {
         // Get a random alarm for Alarm 1 based on the chosen design
         alarm1 = getRandomAlarm(randomDesign);
         
-        // Get a different category for Alarm 2, ensuring different design
+        // Get a different category for Alarm 2, ensuring different design, add ", alarm1.priority" if you also want a different priority 
         alarm2 = getRandomAlarm(randomDesign === "icons" ? "melodics" : "icons", alarm1.category);
         
         // Set the design in participantSelection
@@ -259,7 +259,7 @@ function getNonRepeatingAlarmPair(design) {
     ];
 }
 
-function getRandomAlarm(design, excludeCategory) {
+function getRandomAlarm(design, excludeCategory,excludePriority) {
     const categories = ["Cardiovascular", "Ventilation", "DrugAdministration"];
     const priorities = ["High", "Medium"];
     
@@ -268,7 +268,12 @@ function getRandomAlarm(design, excludeCategory) {
         randomCategory = categories[Math.floor(Math.random() * categories.length)];
     } while (randomCategory === excludeCategory); // Ensure a different category
 
-    const randomPriority = priorities[Math.floor(Math.random() * priorities.length)];
+    let randomPriority;
+    do {
+        randomPriority = priorities[Math.floor(Math.random() * priorities.length)];
+    } while (randomPriority === excludePriority); // Ensure a different priority
+    
+    // const randomPriority = priorities[Math.floor(Math.random() * priorities.length)];
 
     return {
         category: randomCategory,
