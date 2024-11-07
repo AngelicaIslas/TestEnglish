@@ -259,7 +259,7 @@ function getNonRepeatingAlarmPair(design) {
     ];
 }
 
-function getRandomAlarm(design, excludeCategory,excludePriority) {
+function getRandomAlarm(design, excludeCategory, excludePriority) {
     const categories = ["Cardiovascular", "Ventilation", "DrugAdministration"];
     const priorities = ["High", "Medium"];
     
@@ -271,7 +271,7 @@ function getRandomAlarm(design, excludeCategory,excludePriority) {
     let randomPriority;
     do {
         randomPriority = priorities[Math.floor(Math.random() * priorities.length)];
-    } while (randomPriority === excludePriority); // Ensure a different priority
+    } while (randomPriority === excludePriority); // Ensure a different priority than the one given, if not exclusion is sent then it will be just random
     
     // const randomPriority = priorities[Math.floor(Math.random() * priorities.length)];
 
